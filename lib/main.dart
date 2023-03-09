@@ -43,8 +43,9 @@ class MyHomePage extends StatelessWidget {
         children: [
           FloatingActionButton(
             onPressed: () {
-              BlocProvider.of<CounterBloc>(context)
-                  .add(IncrementCounterEvent());
+              /// 접근방식1: provider 형태
+              final counterBloc = BlocProvider.of<CounterBloc>(context);
+              counterBloc.add(IncrementCounterEvent());
             },
             child: const Icon(Icons.add),
             heroTag: 'increment',
@@ -52,7 +53,11 @@ class MyHomePage extends StatelessWidget {
           const SizedBox(width: 10.0),
           FloatingActionButton(
             onPressed: () {
-              context.read<CounterBloc>().add(DecrementCounterEvent());
+              /// 접근방식2: context extension
+              final counterBloc = context.read<CounterBloc>();
+              counterBloc.add(
+                DecrementCounterEvent(),
+              );
             },
             child: const Icon(Icons.remove),
             heroTag: 'decrement',
