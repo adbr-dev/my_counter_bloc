@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:my_counter_bloc/blocs/counter/counter_bloc.dart';
-import 'package:my_counter_bloc/other_page.dart';
+
+import 'blocs/counter/counter_bloc.dart';
+import 'other_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -47,7 +48,7 @@ class MyHomePage extends StatelessWidget {
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) {
-                return OtherPage();
+                return const OtherPage();
               }),
             );
           }
@@ -55,7 +56,7 @@ class MyHomePage extends StatelessWidget {
         child: Center(
           child: Text(
             '${context.watch<CounterBloc>().state.counter}',
-            style: TextStyle(fontSize: 52.0),
+            style: const TextStyle(fontSize: 52.0),
           ),
         ),
       ),
@@ -67,15 +68,15 @@ class MyHomePage extends StatelessWidget {
               BlocProvider.of<CounterBloc>(context)
                   .add(IncrementCounterEvent());
             },
-            child: Icon(Icons.add),
+            child: const Icon(Icons.add),
             heroTag: 'increment',
           ),
-          SizedBox(width: 10.0),
+          const SizedBox(width: 10.0),
           FloatingActionButton(
             onPressed: () {
               context.read<CounterBloc>().add(DecrementCounterEvent());
             },
-            child: Icon(Icons.remove),
+            child: const Icon(Icons.remove),
             heroTag: 'decrement',
           ),
         ],
